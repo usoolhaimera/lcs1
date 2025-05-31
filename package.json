@@ -1,7 +1,47 @@
 {
+  "name": "laptop-comparison-system",
+  "version": "1.0.0",
+  "description": "A full-stack web application for comparing laptops across multiple e-commerce platforms",
   "type": "module",
+  "scripts": {
+    "dev": "concurrently \"npm run dev:server\" \"npm run dev:client\"",
+    "dev:server": "cd server && npm run dev",
+    "dev:client": "cd client && npm run dev",
+    "build": "cd client && npm run build",
+    "start": "cd server && npm start",
+    "test": "node test-api.js",
+    "test:suggestions": "node test-suggestions.js",
+    "test:detailed": "node detailed-test.js",
+    "install:all": "npm install && cd client && npm install && cd ../server && npm install",
+    "scrape:amazon": "cd Scrapping && node aM.js",
+    "scrape:flipkart": "cd Scrapping && node Flip.js",
+    "match:data": "cd Scrapping && node match.js"
+  },
+  "keywords": [
+    "laptop",
+    "comparison",
+    "e-commerce",
+    "price-comparison",
+    "react",
+    "nodejs",
+    "mongodb",
+    "web-scraping"
+  ],
+  "author": "Your Name",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/YOUR_USERNAME/laptop-comparison-system.git"
+  },
   "dependencies": {
     "express": "^5.1.0",
     "node-fetch": "^3.3.2"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  },
+  "engines": {
+    "node": ">=16.0.0",
+    "npm": ">=8.0.0"
   }
 }
