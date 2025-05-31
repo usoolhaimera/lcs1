@@ -21,22 +21,23 @@ export const useProducts = (): UseProductsReturn => {
   const [dealProducts, setDealProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-
   const fetchProducts = async () => {
     try {
       setLoading(true);
       setError(null);
-      const response = await fetch("http://localhost:8080/api/search");
+      const response = await fetch("http://localhost:8080/api/suggestions");
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
       const data = await response.json();
-      if (!data.success || !Array.isArray(data.laptops)) {
+
+      // Updated to check for "suggestions" instead of "laptops"
+      if (!data.success || !Array.isArray(data.suggestions)) {
         throw new Error("Invalid data format received from server");
       }
 
-      // Remove duplicates and ensure all products have proper multi-site data
-      const laptops = removeDuplicates(data.laptops);
+      // Updated to use "suggestions"
+      const laptops = removeDuplicates(data.suggestions);
 
       // Shuffle the data to ensure different sections get varied content
       const shuffledLaptops = shuffle(laptops);

@@ -95,8 +95,11 @@ const Header: React.FC = () => {
         );
         const data = await response.json();
 
+        // Fix: Use 'suggestions' instead of 'laptops'
+        const suggestionsArray = data.success ? data.suggestions : [];
+
         // Remove duplicates based on brand + series combination
-        const uniqueSuggestions = data.filter(
+        const uniqueSuggestions = suggestionsArray.filter(
           (suggestion: Suggestion, index: number, self: Suggestion[]) => {
             const key = `${suggestion.brand} ${suggestion.series}`
               .toLowerCase()
